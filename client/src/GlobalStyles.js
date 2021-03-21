@@ -17,6 +17,7 @@ h1, h2, h3 {
   color: ${COLORS.primary};
 }
 a {
+  font-size: 1.1rem;
   text-decoration: none;
   color: ${COLORS.accent};
   &:hover {
