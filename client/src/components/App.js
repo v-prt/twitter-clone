@@ -12,14 +12,12 @@ import { Profile } from "./Profile";
 import { CurrentUserContext } from "../CurrentUserContext";
 
 export const App = () => {
-  const { currentUser, status } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   return (
     <BrowserRouter>
       <GlobalStyles />
       <Sidebar />
-      {status === "loading" ? (
-        <div>Loading...</div>
-      ) : (
+      {currentUser ? (
         <Switch>
           <Route exact path="/">
             <HomeFeed />
@@ -37,6 +35,8 @@ export const App = () => {
             <Profile />
           </Route>
         </Switch>
+      ) : (
+        <div>Loading...</div>
       )}
     </BrowserRouter>
   );

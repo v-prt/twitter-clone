@@ -1,17 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../logo.svg";
+import { ReactComponent as Logo } from "../logo.svg";
+import { BiHomeHeart, BiUserCircle, BiBell, BiBookmark } from "react-icons/bi";
 
 export const Sidebar = () => {
   return (
     <Wrapper>
-      {/* TODO: FIX BROKEN IMG */}
-      <img src={logo} alt="cat logo"></img>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/me/profile">Profile</NavLink>
-      <NavLink to="/notifications">Notifications</NavLink>
-      <NavLink to="/bookmarks">Bookmarks</NavLink>
+      <Logo style={{ width: "40px" }} />
+      <NavLink to="/">
+        <BiHomeHeart />
+        Home
+      </NavLink>
+      <NavLink to="/me/profile">
+        <BiUserCircle />
+        Profile
+      </NavLink>
+      <NavLink to="/notifications">
+        <BiBell />
+        Notifications
+      </NavLink>
+      <NavLink to="/bookmarks">
+        <BiBookmark />
+        Bookmarks
+      </NavLink>
     </Wrapper>
   );
 };

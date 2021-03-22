@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 
+// use small tweets
 export const Profile = () => {
   return (
     <>

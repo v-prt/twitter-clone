@@ -8,6 +8,8 @@ const COLORS = {
 export default createGlobalStyle`
 * {
     font-family: "Helvetica", "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
 }
 body {
   width: 75%;
