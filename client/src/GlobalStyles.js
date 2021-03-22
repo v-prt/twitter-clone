@@ -1,9 +1,18 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 const COLORS = {
   primary: "#9900ff",
   accent: "black",
 };
+
+export const Button = styled.button`
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background: ${COLORS.primary};
+  text-align: right;
+`;
 
 export default createGlobalStyle`
 * {

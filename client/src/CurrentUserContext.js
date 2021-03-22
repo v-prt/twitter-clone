@@ -6,6 +6,7 @@ export const CurrentUserProvider = ({ children }) => {
   const [status, setStatus] = useState("loading");
   const [tweetIds, setTweetIds] = useState([]);
   const [tweetObjects, setTweetObjects] = useState({});
+  const [tweetIsPosted, setTweetIsPosted] = useState(true);
 
   // get profile of current user
   useEffect(() => {
@@ -19,17 +20,26 @@ export const CurrentUserProvider = ({ children }) => {
 
   // get all tweets by users the current user is following
   useEffect(() => {
-    fetch(`/api/me/home-feed`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTweetIds([...data.tweetIds]);
-        setTweetObjects({ ...data.tweetsById });
-      });
-  }, []);
+    if (tweetIsPosted) {
+      fetch(`/api/me/home-feed`)
+        .then((res) => res.json())
+        .then((data) => {
+          setTweetIds([...data.tweetIds]);
+          setTweetObjects({ ...data.tweetsById });
+          setTweetIsPosted(false);
+        });
+    }
+  }, [tweetIsPosted]);
 
   return (
     <CurrentUserContext.Provider
-      value={{ currentUser, status, tweetIds, tweetObjects }}
+      value={{
+        currentUser,
+        status,
+        tweetIds,
+        tweetObjects,
+        setTweetIsPosted,
+      }}
     >
       {children}
     </CurrentUserContext.Provider>
