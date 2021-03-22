@@ -3,22 +3,20 @@ import React, { createContext, useState, useEffect } from "react";
 export const CurrentUserContext = createContext(null);
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [status, setStatus] = useState("loading");
   const [tweetIds, setTweetIds] = useState([]);
   const [tweetObjects, setTweetObjects] = useState({});
   const [tweetIsPosted, setTweetIsPosted] = useState(true);
 
-  // get profile of current user
+  // GET CURRENT USER'S PROFILE
   useEffect(() => {
     fetch(`/api/me/profile`)
       .then((res) => res.json())
       .then((data) => {
         setCurrentUser(data.profile);
-        setStatus("idle");
       });
   }, []);
 
-  // get all tweets by users the current user is following
+  // GET ALL TWEETS FOR HOME FEED
   useEffect(() => {
     if (tweetIsPosted) {
       fetch(`/api/me/home-feed`)
@@ -35,9 +33,11 @@ export const CurrentUserProvider = ({ children }) => {
     <CurrentUserContext.Provider
       value={{
         currentUser,
-        status,
         tweetIds,
+        setTweetIds,
         tweetObjects,
+        setTweetObjects,
+        tweetIsPosted,
         setTweetIsPosted,
       }}
     >

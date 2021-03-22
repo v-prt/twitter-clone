@@ -9,9 +9,9 @@ export const HomeFeed = () => {
 
   return (
     <Wrapper>
+      <h1>Home</h1>
       {tweetIds ? (
         <>
-          <h1>Home</h1>
           <PostTweet />
           <Tweets>
             {tweetIds.map((tweetId) => {
