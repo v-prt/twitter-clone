@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Wrapper } from "../GlobalStyles";
 import moment from "moment";
 import { BiArrowBack } from "react-icons/bi";
+import { ActionBar } from "./ActionBar";
 
 export const TweetDetails = () => {
   const { tweetId } = useParams();
@@ -34,7 +35,9 @@ export const TweetDetails = () => {
             <AuthorInfo>
               <Avatar src={tweet.author.avatarSrc} alt="user avatar" />
               <Details>
-                <Name>{tweet.author.displayName}</Name>
+                <Link to={`/${tweet.author.handle}/profile`}>
+                  <Name>{tweet.author.displayName}</Name>
+                </Link>
                 <Handle>@{tweet.author.handle}</Handle>
               </Details>
             </AuthorInfo>
@@ -43,6 +46,7 @@ export const TweetDetails = () => {
               <Media src={tweet.media[0].url} alt="" />
             )}
             <Date>{date}</Date>
+            <ActionBar />
           </>
         ) : (
           <>Loading tweet details...</>

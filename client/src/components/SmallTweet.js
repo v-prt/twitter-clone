@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
+import { ActionBar } from "./ActionBar";
 import { BiRefresh } from "react-icons/bi";
 import { CurrentUserContext } from "../CurrentUserContext";
 
@@ -13,30 +14,35 @@ export const SmallTweet = ({ tweetId }) => {
   return (
     <Tweet>
       {tweet ? (
-        <Link to={`/tweet/${tweetId}`}>
-          {tweet.retweetFrom && (
-            <>
-              <Remeow>
-                <Icon>
-                  <BiRefresh />
-                </Icon>
-                {tweet.retweetFrom.displayName} Remeowed
-              </Remeow>
-            </>
-          )}
-          <Avatar src={tweet.author.avatarSrc} alt="user avatar" />
-          <Info>
-            <TweetDetails>
-              <Name>{tweet.author.displayName}</Name>
-              <Handle>@{tweet.author.handle}</Handle>
-              <Date> - {moment(tweet.timestamp).format("MMM Do")}</Date>
-            </TweetDetails>
-            <Status>{tweet.status}</Status>
-            {tweet.media.length > 0 && (
-              <Media src={tweet.media[0].url} alt="" />
+        <>
+          <Link to={`/tweet/${tweetId}`}>
+            {tweet.retweetFrom && (
+              <>
+                <Remeow>
+                  <Icon>
+                    <BiRefresh />
+                  </Icon>
+                  {tweet.retweetFrom.displayName} Remeowed
+                </Remeow>
+              </>
             )}
-          </Info>
-        </Link>
+            <Avatar src={tweet.author.avatarSrc} alt="user avatar" />
+            <Info>
+              <TweetDetails>
+                <Link to={`/${tweet.author.handle}/profile`}>
+                  <Name>{tweet.author.displayName}</Name>
+                </Link>
+                <Handle>@{tweet.author.handle}</Handle>
+                <Date> - {moment(tweet.timestamp).format("MMM Do")}</Date>
+              </TweetDetails>
+              <Status>{tweet.status}</Status>
+              {tweet.media.length > 0 && (
+                <Media src={tweet.media[0].url} alt="" />
+              )}
+            </Info>
+          </Link>
+          <ActionBar />
+        </>
       ) : (
         <>Loading tweet...</>
       )}
@@ -48,7 +54,7 @@ const Tweet = styled.li`
   display: flex;
   flex-direction: column;
   border: 1px solid lightgrey;
-  padding: 10px;
+  padding: 10px 0;
 `;
 
 const Remeow = styled.div`
@@ -65,12 +71,13 @@ const Avatar = styled.img`
   width: 50px;
   border-radius: 50%;
   float: left;
-  margin-right: 10px;
+  margin: 0 10px;
 `;
 
 const Info = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 10px;
 `;
 
 const TweetDetails = styled.div`
