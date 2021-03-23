@@ -3,8 +3,9 @@ import React, { createContext, useState, useEffect } from "react";
 export const CurrentUserContext = createContext(null);
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  // tweetIds needed for sorting tweets in feeds
   const [tweetIds, setTweetIds] = useState([]);
-  const [tweetObjects, setTweetObjects] = useState({});
+  const [allTweets, setAllTweets] = useState({});
   const [tweetIsPosted, setTweetIsPosted] = useState(true);
 
   // GET CURRENT USER'S PROFILE
@@ -23,7 +24,7 @@ export const CurrentUserProvider = ({ children }) => {
         .then((res) => res.json())
         .then((data) => {
           setTweetIds([...data.tweetIds]);
-          setTweetObjects({ ...data.tweetsById });
+          setAllTweets(data.tweetsById);
           setTweetIsPosted(false);
         });
     }
@@ -34,9 +35,8 @@ export const CurrentUserProvider = ({ children }) => {
       value={{
         currentUser,
         tweetIds,
-        setTweetIds,
-        tweetObjects,
-        setTweetObjects,
+        allTweets,
+        setAllTweets,
         tweetIsPosted,
         setTweetIsPosted,
       }}

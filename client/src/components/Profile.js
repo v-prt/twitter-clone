@@ -2,36 +2,30 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
-import { CurrentUserContext } from "../CurrentUserContext";
 import { SmallTweet } from "./SmallTweet";
 
 export const Profile = () => {
-  // why doesn't "handle" work?
-  const { profileId } = useParams();
+  const { handle } = useParams();
   const [profile, setProfile] = useState();
-  const { tweetIds, setTweetIds, setTweetObjects } = useContext(
-    CurrentUserContext
-  );
+  const [profileTweets, setProfileTweets] = useState();
 
   // GET SPECIFIED USER'S PROFILE
   useEffect(() => {
-    fetch(`/api/${profileId}/profile`)
+    fetch(`/api/${handle}/profile`)
       .then((res) => res.json())
       .then((data) => {
         setProfile(data.profile);
       });
-  }, [profileId]);
-  console.log(profile);
+  }, [handle]);
 
   // GET TWEETS/RETWEETS BY SPECIFIED USER FOR PROFILE FEED
   useEffect(() => {
-    fetch(`/api/${profileId}/feed`)
+    fetch(`/api/${handle}/feed`)
       .then((res) => res.json())
       .then((data) => {
-        setTweetIds([...data.tweetIds]);
-        setTweetObjects({ ...data.tweetsById });
+        setProfileTweets([...data.tweetIds]);
       });
-  }, [profileId]);
+  }, [handle]);
 
   // TODO: get tweets to work better (tweets on HomeFeed are getting erased after going to Profile)
   return (
@@ -52,10 +46,10 @@ export const Profile = () => {
             <Heading>Tweets</Heading>
           </UserDetails>
           <Tweets>
-            {tweetIds ? (
+            {profileTweets ? (
               <>
-                {tweetIds.map((tweetId) => {
-                  return <SmallTweet tweetId={tweetId} />;
+                {profileTweets.map((tweet) => {
+                  return <SmallTweet tweetId={tweet} />;
                 })}
               </>
             ) : (

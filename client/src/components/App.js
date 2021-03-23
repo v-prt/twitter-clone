@@ -32,7 +32,7 @@ export const App = () => {
           <Route path="/tweet/:tweetid">
             <TweetDetails />
           </Route>
-          <Route path="/:profileId">
+          <Route path="/:handle">
             <Profile />
           </Route>
         </Switch>

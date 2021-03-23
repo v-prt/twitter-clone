@@ -77,7 +77,7 @@ When navigating to the root URL `/`, the user should see a list of tweets from t
 
 ### View a profile page
 
-When navigating to `/:profileId`, information about that user is displayed, above a list of that user's tweets (and retweets):
+When navigating to `/:handle`, information about that user is displayed, above a list of that user's tweets (and retweets):
 
 ![Home feed view](./assets/screenshots/profile-view.png)
 
@@ -152,9 +152,9 @@ Next, let's add routes to all of these components! Import React Router, add a `<
 - `/notifications` (notifications route. We won't be building this view, but let's add the route anyway.)
 - `/bookmarks` (another route we won't do much with)
 - `/tweet/:tweetId` (tweet route)
-- `/:profileId` (profile route)
+- `/:handle` (profile route)
 
-> It's important to put them in this order, within a Switch. **`/:profileId` should come last!** This is because it's the "loosest" route; `/notifications` _could_ match, since maybe there's a user with the username "notifications"
+> It's important to put them in this order, within a Switch. **`/:handle` should come last!** This is because it's the "loosest" route; `/notifications` _could_ match, since maybe there's a user with the username "notifications"
 
 ### Styles and constants
 

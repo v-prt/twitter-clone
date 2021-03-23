@@ -5,9 +5,11 @@ import { CurrentUserContext } from "../CurrentUserContext";
 import moment from "moment";
 import { BiRefresh } from "react-icons/bi";
 
+// TODO: fix empty space/loading tweet (may be a broken tweet, can change in data.js or tweet.js)
 export const SmallTweet = ({ tweetId }) => {
-  const { tweetObjects } = useContext(CurrentUserContext);
-  const tweet = tweetObjects[tweetId];
+  const { allTweets } = useContext(CurrentUserContext);
+  const tweet = allTweets[tweetId];
+
   return (
     <Tweet>
       {tweet ? (
@@ -36,7 +38,7 @@ export const SmallTweet = ({ tweetId }) => {
           </Info>
         </Link>
       ) : (
-        <>Loading tweets...</>
+        <>Loading tweet...</>
       )}
     </Tweet>
   );
