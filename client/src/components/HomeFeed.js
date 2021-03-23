@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import { Wrapper } from "../GlobalStyles";
 import { PostTweet } from "./PostTweet";
 import { SmallTweet } from "./SmallTweet";
 import { CurrentUserContext } from "../CurrentUserContext";
@@ -25,14 +26,6 @@ export const HomeFeed = () => {
     </Wrapper>
   );
 };
-
-const Wrapper = styled.main`
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  position: relative;
-  left: 170px;
-`;
 
 const Tweets = styled.ul`
   display: flex;

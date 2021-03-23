@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Button } from "../GlobalStyles";
 import { ReactComponent as Logo } from "../logo.svg";
 import { BiHomeHeart, BiUserCircle, BiBell, BiBookmark } from "react-icons/bi";
 import { CurrentUserContext } from "../CurrentUserContext";
@@ -36,6 +37,7 @@ export const Sidebar = () => {
           </Icon>
           Bookmarks
         </NavLink>
+        <Button>Meow</Button>
       </Wrapper>
     )
   );

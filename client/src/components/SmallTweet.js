@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { CurrentUserContext } from "../CurrentUserContext";
 import moment from "moment";
 import { BiRefresh } from "react-icons/bi";
+import { CurrentUserContext } from "../CurrentUserContext";
 
 // TODO: fix empty space/loading tweet (may be a broken tweet, can change in data.js or tweet.js)
 export const SmallTweet = ({ tweetId }) => {
@@ -13,7 +13,7 @@ export const SmallTweet = ({ tweetId }) => {
   return (
     <Tweet>
       {tweet ? (
-        <Link to={`/tweet/${tweet.id}`} key={tweet.id}>
+        <Link to={`/tweet/${tweetId}`}>
           {tweet.retweetFrom && (
             <>
               <Remeow>

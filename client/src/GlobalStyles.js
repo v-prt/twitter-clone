@@ -5,13 +5,22 @@ const COLORS = {
   accent: "black",
 };
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 170px;
+  width: 600px;
+`;
+
 export const Button = styled.button`
   padding: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   color: white;
+  font-size: 1.1rem;
   background: ${COLORS.primary};
-  text-align: right;
+  text-align: center;
 `;
 
 export default createGlobalStyle`

@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Wrapper } from "../GlobalStyles";
 import moment from "moment";
 import { SmallTweet } from "./SmallTweet";
 
@@ -63,14 +64,6 @@ export const Profile = () => {
     </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  left: 170px;
-  width: 75%;
-`;
 
 const Banner = styled.img``;
 

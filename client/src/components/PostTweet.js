@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { CurrentUserContext } from "../CurrentUserContext";
 import { Button } from "../GlobalStyles";
+import { CurrentUserContext } from "../CurrentUserContext";
 
 export const PostTweet = () => {
   const { currentUser, setTweetIsPosted } = useContext(CurrentUserContext);

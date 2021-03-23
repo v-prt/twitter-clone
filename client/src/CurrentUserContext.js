@@ -36,7 +36,6 @@ export const CurrentUserProvider = ({ children }) => {
         currentUser,
         tweetIds,
         allTweets,
-        setAllTweets,
         tweetIsPosted,
         setTweetIsPosted,
       }}

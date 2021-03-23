@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import GlobalStyles from "../GlobalStyles";
-import styled from "styled-components";
+import GlobalStyles, { Wrapper } from "../GlobalStyles";
 
 import { Sidebar } from "./Sidebar";
 import { HomeFeed } from "./HomeFeed";
@@ -29,7 +28,7 @@ export const App = () => {
           <Route path="/bookmarks">
             <Bookmarks />
           </Route>
-          <Route path="/tweet/:tweetid">
+          <Route path="/tweet/:tweetId">
             <TweetDetails />
           </Route>
           <Route path="/:handle">
@@ -42,10 +41,3 @@ export const App = () => {
     </BrowserRouter>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  left: 170px;
-`;
