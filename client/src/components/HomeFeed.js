@@ -29,7 +29,9 @@ export const HomeFeed = () => {
 const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  width: 600px;
+  position: relative;
+  left: 170px;
 `;
 
 const Tweets = styled.ul`

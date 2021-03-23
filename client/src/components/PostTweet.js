@@ -85,6 +85,7 @@ const Input = styled.input`
   width: 100%;
   border: none;
   margin: 10px;
+  font-size: 1.1rem;
   &:focus {
     outline: none;
   }

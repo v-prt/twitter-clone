@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import GlobalStyles from "../GlobalStyles";
+import styled from "styled-components";
 
 import { Sidebar } from "./Sidebar";
 import { HomeFeed } from "./HomeFeed";
@@ -36,8 +37,15 @@ export const App = () => {
           </Route>
         </Switch>
       ) : (
-        <div>Loading...</div>
+        <Wrapper>Loading App...</Wrapper>
       )}
     </BrowserRouter>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 170px;
+`;

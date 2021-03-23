@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CurrentUserContext } from "../CurrentUserContext";
 import moment from "moment";
+import { BiRefresh } from "react-icons/bi";
 
 export const SmallTweet = ({ tweetId }) => {
   const { tweetObjects } = useContext(CurrentUserContext);
@@ -13,14 +14,26 @@ export const SmallTweet = ({ tweetId }) => {
         <Link to={`/tweet/${tweet.id}`} key={tweet.id}>
           {tweet.retweetFrom && (
             <>
-              <p>{tweet.retweetFrom.displayName} Remeowed</p>
+              <Remeow>
+                <Icon>
+                  <BiRefresh />
+                </Icon>
+                {tweet.retweetFrom.displayName} Remeowed
+              </Remeow>
             </>
           )}
           <Avatar src={tweet.author.avatarSrc} alt="user avatar" />
-          <span>{tweet.author.displayName}</span> @{tweet.author.handle} -
-          {moment(tweet.timestamp).format("MMM Do")}
-          <p>{tweet.status}</p>
-          {tweet.media.length > 0 && <Media src={tweet.media[0].url} alt="" />}
+          <Info>
+            <TweetDetails>
+              <Name>{tweet.author.displayName}</Name>
+              <Handle>@{tweet.author.handle}</Handle>
+              <Date> - {moment(tweet.timestamp).format("MMM Do")}</Date>
+            </TweetDetails>
+            <Status>{tweet.status}</Status>
+            {tweet.media.length > 0 && (
+              <Media src={tweet.media[0].url} alt="" />
+            )}
+          </Info>
         </Link>
       ) : (
         <>Loading tweets...</>
@@ -36,12 +49,50 @@ const Tweet = styled.li`
   padding: 10px;
 `;
 
+const Remeow = styled.div`
+  display: flex;
+  opacity: 40%;
+  margin: 10px 0;
+`;
+
+const Icon = styled.div`
+  margin: 0 10px 0 20px;
+`;
+
 const Avatar = styled.img`
   width: 50px;
   border-radius: 50%;
+  float: left;
+  margin-right: 10px;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TweetDetails = styled.div`
+  display: flex;
+`;
+
+const Name = styled.p`
+  font-weight: bold;
+`;
+
+const Handle = styled.p`
+  opacity: 40%;
+  margin: 0 10px;
+`;
+
+const Date = styled.p`
+  opacity: 40%;
+`;
+
+const Status = styled.p`
+  margin: 10px 0;
 `;
 
 const Media = styled.img`
-  max-width: 580px;
-  max-height: 600px;
+  width: 100%;
+  border-radius: 20px;
 `;

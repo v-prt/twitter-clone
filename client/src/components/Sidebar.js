@@ -9,19 +9,27 @@ export const Sidebar = () => {
     <Wrapper>
       <Logo style={{ width: "40px" }} />
       <NavLink to="/">
-        <BiHomeHeart />
+        <Icon>
+          <BiHomeHeart />
+        </Icon>
         Home
       </NavLink>
       <NavLink to="/me/profile">
-        <BiUserCircle />
+        <Icon>
+          <BiUserCircle />
+        </Icon>
         Profile
       </NavLink>
       <NavLink to="/notifications">
-        <BiBell />
+        <Icon>
+          <BiBell />
+        </Icon>
         Notifications
       </NavLink>
       <NavLink to="/bookmarks">
-        <BiBookmark />
+        <Icon>
+          <BiBookmark />
+        </Icon>
         Bookmarks
       </NavLink>
     </Wrapper>
@@ -32,9 +40,16 @@ const Wrapper = styled.nav`
   display: flex;
   flex-direction: column;
   float: left;
+  position: fixed;
 `;
 
 const NavLink = styled(Link)`
+  display: flex;
+  align-items: center;
   margin: 10px;
   font-weight: bold;
+`;
+
+const Icon = styled.div`
+  margin-right: 10px;
 `;
