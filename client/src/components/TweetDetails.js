@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Wrapper } from "../GlobalStyles";
+import { Wrapper, Loader } from "../GlobalStyles";
 import moment from "moment";
-import { BiArrowBack } from "react-icons/bi";
+import { BiLoader, BiArrowBack } from "react-icons/bi";
 import { ActionBar } from "./ActionBar";
 
 export const TweetDetails = () => {
@@ -49,7 +49,9 @@ export const TweetDetails = () => {
             <ActionBar />
           </>
         ) : (
-          <>Loading tweet details...</>
+          <Loader>
+            <BiLoader />
+          </Loader>
         )}
       </Tweet>
     </Wrapper>

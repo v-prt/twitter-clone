@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Wrapper } from "../GlobalStyles";
+import { Wrapper, Loader } from "../GlobalStyles";
+import { BiLoader } from "react-icons/bi";
 import moment from "moment";
 import { SmallTweet } from "./SmallTweet";
 
@@ -54,12 +55,16 @@ export const Profile = () => {
                 })}
               </>
             ) : (
-              <p>Loading profile feed...</p>
+              <Loader>
+                <BiLoader />
+              </Loader>
             )}
           </Tweets>
         </>
       ) : (
-        <>Loading profile...</>
+        <Loader>
+          <BiLoader />
+        </Loader>
       )}
     </Wrapper>
   );

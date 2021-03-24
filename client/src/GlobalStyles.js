@@ -13,6 +13,11 @@ export const Wrapper = styled.div`
   width: 600px;
 `;
 
+export const Loader = styled.div`
+  font-size: 2rem;
+  opacity: 50%;
+`;
+
 export const Button = styled.button`
   padding: 10px;
   border: none;

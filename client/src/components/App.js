@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import GlobalStyles, { Wrapper } from "../GlobalStyles";
+import GlobalStyles, { Loader } from "../GlobalStyles";
+import { BiLoader } from "react-icons/bi";
 
 import { Sidebar } from "./Sidebar";
 import { HomeFeed } from "./HomeFeed";
@@ -36,7 +37,9 @@ export const App = () => {
           </Route>
         </Switch>
       ) : (
-        <Wrapper>Loading App...</Wrapper>
+        <Loader>
+          <BiLoader />
+        </Loader>
       )}
     </BrowserRouter>
   );

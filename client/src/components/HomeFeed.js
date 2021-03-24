@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { Wrapper } from "../GlobalStyles";
+import { Wrapper, Loader } from "../GlobalStyles";
+import { BiLoader } from "react-icons/bi";
 import { PostTweet } from "./PostTweet";
 import { SmallTweet } from "./SmallTweet";
 import { CurrentUserContext } from "../CurrentUserContext";
@@ -21,7 +22,9 @@ export const HomeFeed = () => {
           </Tweets>
         </>
       ) : (
-        <p>Loading home feed...</p>
+        <Loader>
+          <BiLoader />
+        </Loader>
       )}
     </Wrapper>
   );

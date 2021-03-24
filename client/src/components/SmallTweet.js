@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Loader } from "../GlobalStyles";
 import moment from "moment";
 import { ActionBar } from "./ActionBar";
-import { BiRefresh } from "react-icons/bi";
+import { BiLoader, BiRefresh } from "react-icons/bi";
 import { CurrentUserContext } from "../CurrentUserContext";
 
 // TODO: fix empty space/loading tweet (may be a broken tweet, can change in data.js or tweet.js)
@@ -44,7 +45,9 @@ export const SmallTweet = ({ tweetId }) => {
           <ActionBar />
         </>
       ) : (
-        <>Loading tweet...</>
+        <Loader>
+          <BiLoader />
+        </Loader>
       )}
     </Tweet>
   );
