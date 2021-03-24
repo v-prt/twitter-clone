@@ -13,13 +13,12 @@ export const CurrentUserProvider = ({ children }) => {
   // GET CURRENT USER'S PROFILE
   useEffect(() => {
     fetch(`/api/me/profile`)
-      .then((res) => res.json())
-      // cannot read property push of undefined
-      // .then((res) => {
-      //   if (res.status === 500) {
-      //     history.push("/error");
-      //   } else return res.json();
-      // })
+      // .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 500) {
+          history.push("/error");
+        } else return res.json();
+      })
       .then((data) => {
         setCurrentUser(data.profile);
       });
@@ -29,13 +28,12 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     if (tweetIsPosted) {
       fetch(`/api/me/home-feed`)
-        .then((res) => res.json())
-        // cannot read property push of undefined
-        // .then((res) => {
-        //   if (res.status === 500) {
-        //     history.push("/error");
-        //   } else return res.json();
-        // })
+        // .then((res) => res.json())
+        .then((res) => {
+          if (res.status === 500) {
+            history.push("/error");
+          } else return res.json();
+        })
         .then((data) => {
           setTweetIds([...data.tweetIds]);
           setAllTweets(data.tweetsById);

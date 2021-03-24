@@ -1,50 +1,20 @@
-import React, { useContext } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import GlobalStyles, { Loader } from "../GlobalStyles";
-import { BiLoader } from "react-icons/bi";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import GlobalStyles from "../GlobalStyles";
 
 import { Sidebar } from "./Sidebar";
-import { HomeFeed } from "./HomeFeed";
-import { Notifications } from "./Notifications";
-import { Bookmarks } from "./Bookmarks";
-import { TweetDetails } from "./TweetDetails";
-import { Profile } from "./Profile";
-import { Error } from "./Error";
 
-import { CurrentUserContext } from "../CurrentUserContext";
+import { CurrentUserProvider } from "../CurrentUserContext";
+import { Routes } from "./Routes";
 
 export const App = () => {
-  const { currentUser } = useContext(CurrentUserContext);
   return (
     <BrowserRouter>
-      <GlobalStyles />
-      <Sidebar />
-      {currentUser ? (
-        <Switch>
-          <Route exact path="/">
-            <HomeFeed />
-          </Route>
-          <Route path="/notifications">
-            <Notifications />
-          </Route>
-          <Route path="/bookmarks">
-            <Bookmarks />
-          </Route>
-          <Route path="/tweet/:tweetId">
-            <TweetDetails />
-          </Route>
-          <Route path="/:handle">
-            <Profile />
-          </Route>
-          <Route path="/error">
-            <Error />
-          </Route>
-        </Switch>
-      ) : (
-        <Loader>
-          <BiLoader />
-        </Loader>
-      )}
+      <CurrentUserProvider>
+        <GlobalStyles />
+        <Sidebar />
+        <Routes />
+      </CurrentUserProvider>
     </BrowserRouter>
   );
 };

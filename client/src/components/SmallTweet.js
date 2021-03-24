@@ -68,6 +68,9 @@ const TweetLink = styled(Link)`
   &:hover {
     background: #f2f2f2;
   }
+  &:focus {
+    background: #f2f2f2;
+  }
 `;
 
 const Remeow = styled.div`

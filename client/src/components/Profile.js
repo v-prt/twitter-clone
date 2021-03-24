@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Wrapper, Loader } from "../GlobalStyles";
+import { Wrapper, Loader, Button } from "../GlobalStyles";
 import { BiLoader, BiCalendarHeart } from "react-icons/bi";
 import { GrLocation } from "react-icons/gr";
 import moment from "moment";
 import { SmallTweet } from "./SmallTweet";
+import { useHistory } from "react-router";
 
 export const Profile = () => {
+  const history = useHistory();
   const { handle } = useParams();
   const [profile, setProfile] = useState();
   const [profileTweets, setProfileTweets] = useState();
@@ -15,7 +17,13 @@ export const Profile = () => {
   // GET SPECIFIED USER'S PROFILE
   useEffect(() => {
     fetch(`/api/${handle}/profile`)
-      .then((res) => res.json())
+      // .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 500) {
+          history.push("/error");
+        }
+        return res.json();
+      })
       .then((data) => {
         setProfile(data.profile);
       });
@@ -24,7 +32,13 @@ export const Profile = () => {
   // GET TWEETS/RETWEETS BY SPECIFIED USER FOR PROFILE FEED
   useEffect(() => {
     fetch(`/api/${handle}/feed`)
-      .then((res) => res.json())
+      // .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 500) {
+          history.push("/error");
+        }
+        return res.json();
+      })
       .then((data) => {
         setProfileTweets([...data.tweetIds]);
       });
@@ -36,6 +50,9 @@ export const Profile = () => {
         <>
           <Banner src={profile.bannerSrc} alt="banner" />
           <Avatar src={profile.avatarSrc} alt="user avatar" />
+          <FollowBtn>
+            {profile.isBeingFollowedByYou ? <>Following</> : <>Follow</>}
+          </FollowBtn>
           <UserDetails>
             <Name>{profile.displayName}</Name>
             <Div>
@@ -102,6 +119,12 @@ const Avatar = styled.img`
   top: -75px;
   left: 20px;
   z-index: 10;
+`;
+
+const FollowBtn = styled(Button)`
+  position: absolute;
+  top: 195px;
+  left: 525px;
 `;
 
 const UserDetails = styled.div`

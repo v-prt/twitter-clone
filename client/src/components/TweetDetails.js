@@ -16,12 +16,13 @@ export const TweetDetails = () => {
 
   useEffect(() => {
     fetch(`/api/tweet/${tweetId}`)
-      .then((res) => res.json())
-      // .then((res) => {
-      //   if (res.status === 500) {
-      //     history.push("/error");
-      //   } else return res.json();
-      // })
+      // .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 500) {
+          history.push("/error");
+        }
+        return res.json();
+      })
       .then((data) => {
         setTweet({ ...data.tweet });
       });
@@ -58,7 +59,7 @@ export const TweetDetails = () => {
             {tweet.media.length > 0 && (
               <Media src={tweet.media[0].url} alt="" />
             )}
-            <Date>{date}</Date>
+            <Date>{date} - chatter</Date>
           </Tweet>
           <ActionBar liked={tweet.isLiked} likes={tweet.author.numLikes} />
         </>

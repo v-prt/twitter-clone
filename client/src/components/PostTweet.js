@@ -26,12 +26,13 @@ export const PostTweet = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
-      // .then((res) => {
-      //   if (res.status === 500) {
-      //     history.push("/error");
-      //   } else return res.json();
-      // })
+      // .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 500) {
+          history.push("/error");
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data) {
           setNewTweet("");

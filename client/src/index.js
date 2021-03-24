@@ -5,9 +5,7 @@ import { CurrentUserProvider } from "./CurrentUserContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CurrentUserProvider>
-      <App />
-    </CurrentUserProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
