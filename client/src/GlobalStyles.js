@@ -26,6 +26,11 @@ export const Button = styled.button`
   font-size: 1.1rem;
   background: ${COLORS.primary};
   text-align: center;
+  &:disabled {
+    cursor: not-allowed;
+    background: grey;
+    opacity: 50%;
+  }
 `;
 
 export default createGlobalStyle`

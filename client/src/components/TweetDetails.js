@@ -46,7 +46,7 @@ export const TweetDetails = () => {
               <Media src={tweet.media[0].url} alt="" />
             )}
             <Date>{date}</Date>
-            <ActionBar />
+            <ActionBar liked={tweet.isLiked} likes={tweet.author.numLikes} />
           </>
         ) : (
           <Loader>

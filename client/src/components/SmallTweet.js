@@ -42,7 +42,7 @@ export const SmallTweet = ({ tweetId }) => {
               )}
             </Info>
           </Link>
-          <ActionBar />
+          <ActionBar liked={tweet.isLiked} likes={tweet.author.numLikes} />
         </>
       ) : (
         <Loader>

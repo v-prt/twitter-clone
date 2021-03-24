@@ -48,10 +48,28 @@ export const PostTweet = () => {
         />
       </InputDiv>
       <BtnDiv>
-        <Num>{charCount}</Num>
-        <Button type="submit" onClick={postTweet}>
-          Meow
-        </Button>
+        {charCount < 0 && (
+          <>
+            <RedNum>{charCount}</RedNum>
+            <Button disabled>Meow</Button>
+          </>
+        )}
+        {charCount <= 55 && charCount >= 0 && (
+          <>
+            <YellowNum>{charCount}</YellowNum>
+            <Button type="submit" onClick={postTweet}>
+              Meow
+            </Button>
+          </>
+        )}
+        {charCount > 55 && (
+          <>
+            <Num>{charCount}</Num>
+            <Button type="submit" onClick={postTweet}>
+              Meow
+            </Button>
+          </>
+        )}
       </BtnDiv>
     </Form>
   );
@@ -97,4 +115,13 @@ const BtnDiv = styled.div`
 
 const Num = styled.span`
   margin-right: 10px;
+  color: grey;
+`;
+
+const YellowNum = styled(Num)`
+  color: #ff9900;
+`;
+
+const RedNum = styled(Num)`
+  color: red;
 `;
