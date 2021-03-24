@@ -55,11 +55,19 @@ const Nav = styled.nav`
 const NavLink = styled(Link)`
   display: flex;
   align-items: center;
-  margin: 15px 0;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 20px;
   font-size: 1.4rem;
   font-weight: bold;
   &:hover {
     color: ${COLORS.primary};
+    background: #f5e6ff;
+  }
+  &:focus {
+    outline: none;
+    color: ${COLORS.primary};
+    background: #f5e6ff;
   }
 `;
 

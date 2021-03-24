@@ -89,7 +89,7 @@ const Form = styled.form`
   border-top: 1px solid lightgrey;
   border-bottom: 10px solid lightgrey;
   padding: 10px;
-  height: 150px;
+  height: 175px;
 `;
 
 const InputDiv = styled.div`
@@ -106,13 +106,15 @@ const Label = styled.label`
   display: none;
 `;
 
-const Input = styled.input`
+const Input = styled.textarea`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   border: none;
   margin: 10px;
   font-size: 1.1rem;
+  resize: none;
+  height: 100px;
   &:focus {
     outline: none;
   }

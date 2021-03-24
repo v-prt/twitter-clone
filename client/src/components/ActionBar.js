@@ -14,21 +14,21 @@ export const ActionBar = ({ liked, likes }) => {
 
   return (
     <Actions>
-      <Icon>
+      <Comment>
         <BiMessage />
-      </Icon>
-      <Icon>
+      </Comment>
+      <Remeow>
         <FiRepeat />
-      </Icon>
+      </Remeow>
       <Likes>
-        <Icon aria-label="like tweet" onClick={handleToggleLike}>
+        <Like aria-label="like tweet" onClick={handleToggleLike}>
           <FiHeart />
-        </Icon>
+        </Like>
         <Num>{numOfLikes}</Num>
       </Likes>
-      <Icon>
+      <Share>
         <FiShare />
-      </Icon>
+      </Share>
     </Actions>
   );
 };
@@ -37,7 +37,6 @@ const Actions = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 10px 0;
-  border-bottom: 1px solid lightgrey;
 `;
 
 const Icon = styled.button`
@@ -55,7 +54,30 @@ const Icon = styled.button`
   }
   &:focus {
     outline: none;
-    background: pink;
+  }
+`;
+
+const Comment = styled(Icon)`
+  &:focus {
+    background: #cce6ff;
+  }
+`;
+
+const Remeow = styled(Icon)`
+  &:focus {
+    background: #adebad;
+  }
+`;
+
+const Like = styled(Icon)`
+  &:focus {
+    background: #ffccee;
+  }
+`;
+
+const Share = styled(Icon)`
+  &:focus {
+    background: #e6ccff;
   }
 `;
 

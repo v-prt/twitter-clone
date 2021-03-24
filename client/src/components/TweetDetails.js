@@ -27,18 +27,21 @@ export const TweetDetails = () => {
       });
   }, [tweetId]);
 
+  const goBack = () => {
+    history.goBack();
+  };
+
   return (
     <Wrapper>
-      <Return to="/">
-        <Icon>
+      <BackBtn onClick={goBack}>
+        <BackIcon>
           <BiArrowBack />
-        </Icon>
-        Meow
-      </Return>
-
-      <Tweet>
-        {tweet ? (
-          <>
+        </BackIcon>
+        <Label>Meow</Label>
+      </BackBtn>
+      {tweet ? (
+        <>
+          <Tweet>
             <AuthorInfo>
               <Avatar src={tweet.author.avatarSrc} alt="user avatar" />
               <Details>
@@ -56,14 +59,14 @@ export const TweetDetails = () => {
               <Media src={tweet.media[0].url} alt="" />
             )}
             <Date>{date}</Date>
-            <ActionBar liked={tweet.isLiked} likes={tweet.author.numLikes} />
-          </>
-        ) : (
-          <Loader>
-            <BiLoader />
-          </Loader>
-        )}
-      </Tweet>
+          </Tweet>
+          <ActionBar liked={tweet.isLiked} likes={tweet.author.numLikes} />
+        </>
+      ) : (
+        <Loader>
+          <BiLoader />
+        </Loader>
+      )}
     </Wrapper>
   );
 };
@@ -76,15 +79,29 @@ const Return = styled(Link)`
   padding: 10px;
 `;
 
-const Icon = styled.div`
+const BackBtn = styled.button`
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 10px 0;
+  border-bottom: 1px solid lightgrey;
+`;
+
+const BackIcon = styled.span`
+  opacity: 50%;
   margin: 0 10px;
-  opacity: 40%;
+`;
+
+const Label = styled.span`
+  font-weight: bold;
+  font-size: 1.2rem;
 `;
 
 const Tweet = styled.li`
   display: flex;
   flex-direction: column;
   padding: 10px;
+  border-bottom: 1px solid lightgrey;
 `;
 
 const Avatar = styled.img`
@@ -104,8 +121,16 @@ const Details = styled.div`
 `;
 
 const ProfileLink = styled(Link)`
+  padding: 5px;
+  border-radius: 10px;
   &:hover {
     color: ${COLORS.primary};
+    background: #f5e6ff;
+  }
+  &:focus {
+    outline: none;
+    color: ${COLORS.primary};
+    background: #f5e6ff;
   }
 `;
 
@@ -125,6 +150,7 @@ const Date = styled.p`
 const Status = styled.p`
   margin: 10px 0;
   font-size: 1.2rem;
+  overflow-wrap: break-word;
 `;
 
 const Media = styled.img`

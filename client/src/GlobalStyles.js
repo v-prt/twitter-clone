@@ -23,11 +23,21 @@ export const Loader = styled.div`
 export const Button = styled.button`
   padding: 10px;
   border: none;
-  border-radius: 20px;
+  border-radius: 30px;
+  border: 3px solid white;
   color: white;
   font-size: 1.1rem;
   background: ${COLORS.primary};
   text-align: center;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background: ${COLORS.accent};
+  }
+  &:focus {
+    // replaces default focus outline
+    outline: none;
+    border: 3px solid ${COLORS.accent};
+  }
   &:disabled {
     cursor: not-allowed;
     background: grey;

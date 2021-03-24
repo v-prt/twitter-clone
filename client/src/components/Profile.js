@@ -44,12 +44,14 @@ export const Profile = () => {
             </Div>
             <Bio>{profile.bio}</Bio>
             <Div>
-              <Location>
-                <Icon>
-                  <GrLocation />
-                </Icon>
-                {profile.location}
-              </Location>
+              {profile.location && (
+                <Location>
+                  <Icon>
+                    <GrLocation />
+                  </Icon>
+                  {profile.location}
+                </Location>
+              )}
               <JoinDate>
                 <Icon>
                   <BiCalendarHeart />

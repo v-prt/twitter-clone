@@ -64,6 +64,10 @@ const Tweet = styled.li`
 
 const TweetLink = styled(Link)`
   padding: 10px;
+  border-top: 1px solid lightgrey;
+  &:hover {
+    background: #f2f2f2;
+  }
 `;
 
 const Remeow = styled.div`
@@ -90,11 +94,20 @@ const Info = styled.div`
 
 const TweetDetails = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const ProfileLink = styled(Link)`
+  padding: 5px;
+  border-radius: 10px;
   &:hover {
     color: ${COLORS.primary};
+    background: #f5e6ff;
+  }
+  &:focus {
+    outline: none;
+    color: ${COLORS.primary};
+    background: #f5e6ff;
   }
 `;
 
@@ -111,7 +124,8 @@ const Date = styled.p`
   opacity: 40%;
 `;
 
-const Status = styled.p`
+const Status = styled.div`
+  overflow-wrap: break-word;
   margin: 10px 0;
 `;
 
