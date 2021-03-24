@@ -4,9 +4,9 @@ const data = require("../data");
 const CURRENT_USER_HANDLE = "treasurymog";
 
 const MAX_DELAY = 2000;
-// temporarily disabled failures
-// const FAILURE_ODDS = 0.05;
-const FAILURE_ODDS = 0;
+// const FAILURE_ODDS = 0.05; // default failure odds
+const FAILURE_ODDS = 0; // temporarily disable failures
+// const FAILURE_ODDS = 1; // temporarily enable failures (100%)
 
 // Our server is very lean and quick, given that it doens't actually connect
 // to a database or deal with any sort of scale!

@@ -1,7 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
+import { useHistory } from "react-router";
 
 export const CurrentUserContext = createContext(null);
 export const CurrentUserProvider = ({ children }) => {
+  const history = useHistory();
   const [currentUser, setCurrentUser] = useState(null);
   // tweetIds needed for sorting tweets in feeds
   const [tweetIds, setTweetIds] = useState([]);
@@ -12,6 +14,12 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     fetch(`/api/me/profile`)
       .then((res) => res.json())
+      // cannot read property push of undefined
+      // .then((res) => {
+      //   if (res.status === 500) {
+      //     history.push("/error");
+      //   } else return res.json();
+      // })
       .then((data) => {
         setCurrentUser(data.profile);
       });
@@ -22,6 +30,12 @@ export const CurrentUserProvider = ({ children }) => {
     if (tweetIsPosted) {
       fetch(`/api/me/home-feed`)
         .then((res) => res.json())
+        // cannot read property push of undefined
+        // .then((res) => {
+        //   if (res.status === 500) {
+        //     history.push("/error");
+        //   } else return res.json();
+        // })
         .then((data) => {
           setTweetIds([...data.tweetIds]);
           setAllTweets(data.tweetsById);

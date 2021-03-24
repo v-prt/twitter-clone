@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-const COLORS = {
+export const COLORS = {
   primary: "#9900ff",
   accent: "black",
 };
@@ -9,8 +9,10 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  left: 170px;
-  width: 600px;
+  left: 250px;
+  width: 650px;
+  border: 1px solid lightgrey;
+  border-top: none;
 `;
 
 export const Loader = styled.div`
@@ -50,8 +52,5 @@ a {
   font-size: 1.1rem;
   text-decoration: none;
   color: ${COLORS.accent};
-  &:hover {
-    color: ${COLORS.primary};
-  }
 }
 `;

@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button } from "../GlobalStyles";
 import { CurrentUserContext } from "../CurrentUserContext";
 
 export const PostTweet = () => {
+  const history = useHistory();
   const { currentUser, setTweetIsPosted } = useContext(CurrentUserContext);
   const [newTweet, setNewTweet] = useState("");
   const [charCount, setCharCount] = useState(280);
@@ -25,6 +27,11 @@ export const PostTweet = () => {
       },
     })
       .then((res) => res.json())
+      // .then((res) => {
+      //   if (res.status === 500) {
+      //     history.push("/error");
+      //   } else return res.json();
+      // })
       .then((data) => {
         if (data) {
           setNewTweet("");
@@ -79,8 +86,8 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid lightgrey;
-  border-bottom: 3px solid lightgrey;
+  border-top: 1px solid lightgrey;
+  border-bottom: 10px solid lightgrey;
   padding: 10px;
   height: 150px;
 `;
@@ -100,6 +107,8 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
   border: none;
   margin: 10px;

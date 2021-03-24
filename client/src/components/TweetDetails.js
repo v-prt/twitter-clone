@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Wrapper, Loader } from "../GlobalStyles";
+import { COLORS, Wrapper, Loader } from "../GlobalStyles";
 import moment from "moment";
 import { BiLoader, BiArrowBack } from "react-icons/bi";
 import { ActionBar } from "./ActionBar";
 
 export const TweetDetails = () => {
+  const history = useHistory();
   const { tweetId } = useParams();
   // {} is always true, which breaks the setTweet function
   const [tweet, setTweet] = useState(undefined);
@@ -15,6 +17,11 @@ export const TweetDetails = () => {
   useEffect(() => {
     fetch(`/api/tweet/${tweetId}`)
       .then((res) => res.json())
+      // .then((res) => {
+      //   if (res.status === 500) {
+      //     history.push("/error");
+      //   } else return res.json();
+      // })
       .then((data) => {
         setTweet({ ...data.tweet });
       });
@@ -35,9 +42,12 @@ export const TweetDetails = () => {
             <AuthorInfo>
               <Avatar src={tweet.author.avatarSrc} alt="user avatar" />
               <Details>
-                <Link to={`/${tweet.author.handle}/profile`}>
+                <ProfileLink
+                  to={`/${tweet.author.handle}/profile`}
+                  aria-label="go to profile"
+                >
                   <Name>{tweet.author.displayName}</Name>
-                </Link>
+                </ProfileLink>
                 <Handle>@{tweet.author.handle}</Handle>
               </Details>
             </AuthorInfo>
@@ -64,7 +74,6 @@ const Return = styled(Link)`
   font-size: 1.2rem;
   font-weight: bold;
   padding: 10px;
-  border: 1px solid lightgrey;
 `;
 
 const Icon = styled.div`
@@ -75,7 +84,6 @@ const Icon = styled.div`
 const Tweet = styled.li`
   display: flex;
   flex-direction: column;
-  border: 1px solid lightgrey;
   padding: 10px;
 `;
 
@@ -93,6 +101,12 @@ const AuthorInfo = styled.div`
 const Details = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const ProfileLink = styled(Link)`
+  &:hover {
+    color: ${COLORS.primary};
+  }
 `;
 
 const Name = styled.p`

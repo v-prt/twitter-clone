@@ -21,8 +21,8 @@ export const ActionBar = ({ liked, likes }) => {
         <FiRepeat />
       </Icon>
       <Likes>
-        <Icon>
-          <FiHeart onClick={handleToggleLike} />
+        <Icon aria-label="like tweet" onClick={handleToggleLike}>
+          <FiHeart />
         </Icon>
         <Num>{numOfLikes}</Num>
       </Likes>
@@ -36,23 +36,26 @@ export const ActionBar = ({ liked, likes }) => {
 const Actions = styled.div`
   display: flex;
   justify-content: space-around;
-  margin: 10px 0;
   padding: 10px 0;
-  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
 `;
 
-const Icon = styled.div`
+const Icon = styled.button`
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;
+  border: none;
   border-radius: 50%;
-  background: pink;
+  background: none;
   width: 30px;
   height: 30px;
   &:hover {
     cursor: pointer;
-    opacity: 50%;
+  }
+  &:focus {
+    outline: none;
+    background: pink;
   }
 `;
 

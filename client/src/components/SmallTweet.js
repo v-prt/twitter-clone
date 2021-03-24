@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Loader } from "../GlobalStyles";
+import { COLORS, Loader } from "../GlobalStyles";
 import moment from "moment";
 import { ActionBar } from "./ActionBar";
 import { BiLoader, BiRefresh } from "react-icons/bi";
@@ -16,7 +16,7 @@ export const SmallTweet = ({ tweetId }) => {
     <Tweet>
       {tweet ? (
         <>
-          <Link to={`/tweet/${tweetId}`}>
+          <TweetLink to={`/tweet/${tweetId}`} aria-label="go to tweet">
             {tweet.retweetFrom && (
               <>
                 <Remeow>
@@ -30,9 +30,12 @@ export const SmallTweet = ({ tweetId }) => {
             <Avatar src={tweet.author.avatarSrc} alt="user avatar" />
             <Info>
               <TweetDetails>
-                <Link to={`/${tweet.author.handle}/profile`}>
+                <ProfileLink
+                  to={`/${tweet.author.handle}/profile`}
+                  aria-label="go to profile"
+                >
                   <Name>{tweet.author.displayName}</Name>
-                </Link>
+                </ProfileLink>
                 <Handle>@{tweet.author.handle}</Handle>
                 <Date> - {moment(tweet.timestamp).format("MMM Do")}</Date>
               </TweetDetails>
@@ -41,7 +44,7 @@ export const SmallTweet = ({ tweetId }) => {
                 <Media src={tweet.media[0].url} alt="" />
               )}
             </Info>
-          </Link>
+          </TweetLink>
           <ActionBar liked={tweet.isLiked} likes={tweet.author.numLikes} />
         </>
       ) : (
@@ -56,18 +59,21 @@ export const SmallTweet = ({ tweetId }) => {
 const Tweet = styled.li`
   display: flex;
   flex-direction: column;
-  border: 1px solid lightgrey;
-  padding: 10px 0;
+  border-top: 1px solid lightgrey;
+`;
+
+const TweetLink = styled(Link)`
+  padding: 10px;
 `;
 
 const Remeow = styled.div`
   display: flex;
   opacity: 40%;
-  margin: 10px 0;
+  margin: 10px 30px;
 `;
 
 const Icon = styled.div`
-  margin: 0 10px 0 20px;
+  margin: 0 10px;
 `;
 
 const Avatar = styled.img`
@@ -80,11 +86,16 @@ const Avatar = styled.img`
 const Info = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px;
 `;
 
 const TweetDetails = styled.div`
   display: flex;
+`;
+
+const ProfileLink = styled(Link)`
+  &:hover {
+    color: ${COLORS.primary};
+  }
 `;
 
 const Name = styled.p`

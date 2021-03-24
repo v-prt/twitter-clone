@@ -11,7 +11,7 @@ export const HomeFeed = () => {
 
   return (
     <Wrapper>
-      <h1>Home</h1>
+      <Heading>Home</Heading>
       {tweetIds ? (
         <>
           <PostTweet />
@@ -29,6 +29,10 @@ export const HomeFeed = () => {
     </Wrapper>
   );
 };
+
+const Heading = styled.h1`
+  margin: 10px;
+`;
 
 const Tweets = styled.ul`
   display: flex;
