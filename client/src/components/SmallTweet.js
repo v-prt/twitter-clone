@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 import styled from "styled-components";
 import { COLORS, Loader } from "../GlobalStyles";
-import moment from "moment";
 import { ActionBar } from "./ActionBar";
 import { BiLoader, BiRefresh } from "react-icons/bi";
 import { CurrentUserContext } from "../CurrentUserContext";
@@ -60,11 +60,11 @@ const Tweet = styled.li`
   display: flex;
   flex-direction: column;
   border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
 `;
 
 const TweetLink = styled(Link)`
   padding: 10px;
-  border-top: 1px solid lightgrey;
   &:hover {
     background: #f2f2f2;
   }

@@ -18,6 +18,7 @@ export const Wrapper = styled.div`
 export const Loader = styled.div`
   font-size: 2rem;
   opacity: 50%;
+  margin: auto;
 `;
 
 export const Button = styled.button`

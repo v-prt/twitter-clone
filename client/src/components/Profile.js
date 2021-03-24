@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
+import moment from "moment";
 import styled from "styled-components";
-import { Wrapper, Loader, Button } from "../GlobalStyles";
+import { COLORS, Wrapper, Loader, Button } from "../GlobalStyles";
 import { BiLoader, BiCalendarHeart } from "react-icons/bi";
 import { GrLocation } from "react-icons/gr";
-import moment from "moment";
 import { SmallTweet } from "./SmallTweet";
-import { useHistory } from "react-router";
+import { CurrentUserContext } from "../CurrentUserContext";
 
 export const Profile = () => {
+  const { currentUser } = useContext(CurrentUserContext);
   const history = useHistory();
   const { handle } = useParams();
   const [profile, setProfile] = useState();
@@ -27,7 +29,7 @@ export const Profile = () => {
       .then((data) => {
         setProfile(data.profile);
       });
-  }, [handle]);
+  }, [history, handle]);
 
   // GET TWEETS/RETWEETS BY SPECIFIED USER FOR PROFILE FEED
   useEffect(() => {
@@ -42,7 +44,7 @@ export const Profile = () => {
       .then((data) => {
         setProfileTweets([...data.tweetIds]);
       });
-  }, [handle]);
+  }, [history, handle]);
 
   return (
     <Wrapper>
@@ -50,9 +52,11 @@ export const Profile = () => {
         <>
           <Banner src={profile.bannerSrc} alt="banner" />
           <Avatar src={profile.avatarSrc} alt="user avatar" />
-          <FollowBtn>
-            {profile.isBeingFollowedByYou ? <>Following</> : <>Follow</>}
-          </FollowBtn>
+          {profile.handle !== currentUser.handle && (
+            <FollowBtn>
+              {profile.isBeingFollowedByYou && <>Following</>}
+            </FollowBtn>
+          )}
           <UserDetails>
             <Name>{profile.displayName}</Name>
             <Div>
@@ -113,7 +117,7 @@ const Banner = styled.img``;
 
 const Avatar = styled.img`
   border-radius: 50%;
-  border: 2px solid white;
+  border: 4px solid white;
   width: 150px;
   position: relative;
   top: -75px;
@@ -125,12 +129,14 @@ const FollowBtn = styled(Button)`
   position: absolute;
   top: 195px;
   left: 525px;
+  z-index: 20;
 `;
 
 const UserDetails = styled.div`
   position: relative;
   top: -155px;
   padding: 80px 10px 10px 10px;
+  border-bottom: 3px solid ${COLORS.primary};
 `;
 
 const Name = styled.h1``;

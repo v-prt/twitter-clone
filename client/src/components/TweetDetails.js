@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link, useParams } from "react-router-dom";
+import moment from "moment";
 import styled from "styled-components";
 import { COLORS, Wrapper, Loader } from "../GlobalStyles";
-import moment from "moment";
 import { BiLoader, BiArrowBack } from "react-icons/bi";
 import { ActionBar } from "./ActionBar";
 
@@ -26,7 +26,7 @@ export const TweetDetails = () => {
       .then((data) => {
         setTweet({ ...data.tweet });
       });
-  }, [tweetId]);
+  }, [history, tweetId]);
 
   const goBack = () => {
     history.goBack();
@@ -71,14 +71,6 @@ export const TweetDetails = () => {
     </Wrapper>
   );
 };
-
-const Return = styled(Link)`
-  display: flex;
-  align-content: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 10px;
-`;
 
 const BackBtn = styled.button`
   background: none;

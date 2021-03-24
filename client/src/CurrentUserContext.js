@@ -22,7 +22,7 @@ export const CurrentUserProvider = ({ children }) => {
       .then((data) => {
         setCurrentUser(data.profile);
       });
-  }, []);
+  }, [history]);
 
   // GET ALL TWEETS FOR HOME FEED
   useEffect(() => {
@@ -40,7 +40,7 @@ export const CurrentUserProvider = ({ children }) => {
           setTweetIsPosted(false);
         });
     }
-  }, [tweetIsPosted]);
+  }, [history, tweetIsPosted]);
 
   return (
     <CurrentUserContext.Provider
